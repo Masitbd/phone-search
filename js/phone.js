@@ -2,8 +2,8 @@ const loadAllPhones = async () => {
   toggleSpinner("block");
   const searchText = findPhone();
   console.log(searchText);
-  const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
-  /*  const url = `https://openapi.programming-hero.com/api/phones?search=iphone`; */
+  /* const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`; */
+  const url = `https://openapi.programming-hero.com/api/phones?search=iphone`;
 
   const response = await fetch(url);
   const data = await response.json();
@@ -39,22 +39,39 @@ const findPhone = () => {
 };
 
 const getInfo = (id) => {
-  console.log(id);
+  //console.log(id);
   fetch(`https://openapi.programming-hero.com/api/phone/${id}`)
     .then((response) => response.json())
     .then((data) => showDetaila(data.data));
 };
 // Show phone detail information
 const showDetaila = (phone) => {
-  console.log(phone);
+  //console.log(phone);
+  document.getElementById("detail-container").textContent = "";
   console.log(phone.mainFeatures.storage);
   const detailContainer = document.getElementById("detail-container");
   const div = document.createElement("div");
   div.setAttribute("id", "bgColor");
+  let releaseDate = phone.releaseDate
+    ? phone.releaseDate
+    : "release date is not found";
+  console.log(releaseDate);
   div.innerHTML = `
           <img class="h-64 w-64 mx-auto py-3" src=${phone.image} alt=""/>
-          <h3 class="px-4">Phone name: ${phone.phone_name}</h3>
-          <h3 class= 'px-4 pb-3'> Brand: ${phone.brand}</h3>
+         <div class='flex justify-center items-center'>
+         <div>
+         <h3 class="px-4">Phone name: ${phone.name}</h3>
+         <h3 class= 'px-4 pb-3'> Brand: ${phone.brand}</h3>
+         <h3 class= 'px-4 pb-3'> Release Date: ${releaseDate}</h3>
+         </div>
+         <div>
+         <h3 class= 'px-4 pb-3'> Storage: ${phone.mainFeatures.storage}</h3>
+         <h3 class= 'px-4 pb-3'> Chipset: ${phone.mainFeatures.chipSet}</h3>
+         <h3 class= 'px-4 pb-3'> Sensors: ${phone.mainFeatures.sensors}</h3>
+         
+         </div>
+         </div>
+         </div>
          
 
   `;
