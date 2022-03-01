@@ -1,15 +1,23 @@
 const loadAllPhones = async () => {
-  const url = `https://openapi.programming-hero.com/api/phones?search=iphone`;
+  toggleSpinner("block");
+  const searchText = findPhone();
+  console.log(searchText);
+  const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
+  /*  const url = `https://openapi.programming-hero.com/api/phones?search=iphone`; */
 
   const response = await fetch(url);
   const data = await response.json();
-  displayByName(data.data.slice(0, 10));
+  displayByName(data.data.slice(0, 20));
 };
 
 const displayByName = (phones) => {
+  document.getElementById("phone-container").textContent = "";
+
   for (const phone of phones) {
     console.log(phone);
     const phoneContainer = document.getElementById("phone-container");
+    const searchPhoneModel = (document.getElementById("search-text").value =
+      "");
     const div = document.createElement("div");
     div.setAttribute("id", "bgColor");
     div.innerHTML = `
@@ -21,6 +29,13 @@ const displayByName = (phones) => {
     `;
     phoneContainer.appendChild(div);
   }
+  toggleSpinner("none");
+};
+
+// Get the phone name
+const findPhone = () => {
+  const searchPhoneModel = document.getElementById("search-text").value;
+  return searchPhoneModel.toUpperCase();
 };
 
 const getInfo = (id) => {
@@ -29,7 +44,7 @@ const getInfo = (id) => {
     .then((response) => response.json())
     .then((data) => showDetaila(data.data));
 };
-
+// Show phone detail information
 const showDetaila = (phone) => {
   console.log(phone);
   console.log(phone.mainFeatures.storage);
@@ -44,6 +59,10 @@ const showDetaila = (phone) => {
 
   `;
   detailContainer.appendChild(div);
+};
+
+const toggleSpinner = (displayStyle) => {
+  document.getElementById("loader").style.display = displayStyle;
 };
 
 loadAllPhones();
