@@ -27,11 +27,23 @@ const getInfo = (id) => {
   console.log(id);
   fetch(`https://openapi.programming-hero.com/api/phone/${id}`)
     .then((response) => response.json())
-    .then((data) => showDetaila(data));
+    .then((data) => showDetaila(data.data));
 };
 
 const showDetaila = (phone) => {
   console.log(phone);
+  console.log(phone.mainFeatures.storage);
+  const detailContainer = document.getElementById("detail-container");
+  const div = document.createElement("div");
+  div.setAttribute("id", "bgColor");
+  div.innerHTML = `
+          <img class="h-64 w-64 mx-auto py-3" src=${phone.image} alt=""/>
+          <h3 class="px-4">Phone name: ${phone.phone_name}</h3>
+          <h3 class= 'px-4 pb-3'> Brand: ${phone.brand}</h3>
+         
+
+  `;
+  detailContainer.appendChild(div);
 };
 
 loadAllPhones();
