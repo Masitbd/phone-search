@@ -14,6 +14,15 @@ font-family:{ 'Arsenal', sans-serif;}
   height: 380px;
 }
 
+.user{
+  font-size: 50px;
+  color: brown;
+}
+.name{
+  font-size: 30px;
+  color: white;
+  margin-left: 20px;
+}
 /* spinner */
 #loader {
   border: 16px solid #f3f3f3;
