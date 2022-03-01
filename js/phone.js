@@ -58,7 +58,7 @@ const showDetaila = (phone) => {
   console.log(releaseDate);
   div.innerHTML = `
           <img class="h-64 w-64 mx-auto py-3" src=${phone.image} alt=""/>
-         <div class='flex justify-center items-center'>
+         <div class='lg:flex justify-center items-center lg:h-36 sm:h-52'>
          <div>
          <h3 class="px-4">Phone name: ${phone.name}</h3>
          <h3 class= 'px-4 pb-3'> Brand: ${phone.brand}</h3>

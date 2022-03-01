@@ -11,7 +11,7 @@ font-family:{ 'Arsenal', sans-serif;}
 #bgColor{
   background-color:rgb(241, 234, 234) ;
   box-shadow:         3px 3px 5px 6px #ccc;
-  height: 380px;
+  /* height: 380px; */
 }
 
 .user{
