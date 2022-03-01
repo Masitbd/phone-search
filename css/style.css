@@ -13,6 +13,10 @@ font-family:{ 'Arsenal', sans-serif;}
   box-shadow:         3px 3px 5px 6px #ccc;
   /* height: 380px; */
 }
+#detail-card{
+  background-color: lightsteelblue;
+  box-shadow: 3px 3px 5px 6px gray;
+}
 
 .user{
   font-size: 50px;

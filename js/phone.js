@@ -51,7 +51,7 @@ const showDetaila = (phone) => {
   console.log(phone.mainFeatures.storage);
   const detailContainer = document.getElementById("detail-container");
   const div = document.createElement("div");
-  div.setAttribute("id", "bgColor");
+  div.setAttribute("id", "detail-card");
   let releaseDate = phone.releaseDate
     ? phone.releaseDate
     : "release date is not found";
@@ -67,7 +67,7 @@ const showDetaila = (phone) => {
          <div>
          <h3 class= 'px-4 pb-3'> Storage: ${phone.mainFeatures.storage}</h3>
          <h3 class= 'px-4 pb-3'> Chipset: ${phone.mainFeatures.chipSet}</h3>
-         <h3 class= 'px-4 pb-3'> Sensors: ${phone.mainFeatures.sensors}</h3>
+         <h3 class= 'px-4 pb-3'> Sensors: ${phone.mainFeatures.sensors[1]} , ${phone.mainFeatures.sensors[3]}</h3>
          
          </div>
          </div>
