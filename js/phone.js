@@ -7,13 +7,14 @@ const loadAllPhones = async () => {
   const response = await fetch(url);
   const data = await response.json();
   if (data.data.length <= 0) {
+    document.getElementById("phone-container").textContent = "";
+    const searchPhoneModel = (document.getElementById("search-text").value =
+      "");
+    document.getElementById("detail-container").textContent = "";
     alert("No data found");
     toggleSpinner("none");
-  } else if (data.data.length <= 10) {
-    displayByName(data.data.slice(0, 10));
   } else {
     displayByName(data.data.slice(0, 20));
-    alert("more data");
   }
 };
 
@@ -30,7 +31,9 @@ const displayByName = (phones) => {
             <img class="h-64 w-64 mx-auto py-3" src=${phone.image} alt=""/>
             <h3 class="px-4">Phone name: ${phone.phone_name}</h3>
             <h3 class= 'px-4 pb-3'> Brand: ${phone.brand}</h3>
+            <a href="#detail-card">
             <button onclick="getInfo('${phone.slug}')"  class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-4 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 mx-6">More</button>
+            </a>
 
     `;
     phoneContainer.appendChild(div);
@@ -84,5 +87,3 @@ const showDetaila = (phone) => {
 const toggleSpinner = (displayStyle) => {
   document.getElementById("loader").style.display = displayStyle;
 };
-
-//loadAllPhones();
