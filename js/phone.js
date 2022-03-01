@@ -1,20 +1,26 @@
 const loadAllPhones = async () => {
   toggleSpinner("block");
   const searchText = findPhone();
-  console.log(searchText);
-  /* const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`; */
-  const url = `https://openapi.programming-hero.com/api/phones?search=iphone`;
+  const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
+  /* const url = `https://openapi.programming-hero.com/api/phones?search=iphone`; */
 
   const response = await fetch(url);
   const data = await response.json();
-  displayByName(data.data.slice(0, 20));
+  if (data.data.length <= 0) {
+    alert("No data found");
+    toggleSpinner("none");
+  } else if (data.data.length <= 10) {
+    displayByName(data.data.slice(0, 10));
+  } else {
+    displayByName(data.data.slice(0, 20));
+    alert("more data");
+  }
 };
 
 const displayByName = (phones) => {
   document.getElementById("phone-container").textContent = "";
 
   for (const phone of phones) {
-    console.log(phone);
     const phoneContainer = document.getElementById("phone-container");
     const searchPhoneModel = (document.getElementById("search-text").value =
       "");
@@ -39,23 +45,20 @@ const findPhone = () => {
 };
 
 const getInfo = (id) => {
-  //console.log(id);
   fetch(`https://openapi.programming-hero.com/api/phone/${id}`)
     .then((response) => response.json())
     .then((data) => showDetaila(data.data));
 };
 // Show phone detail information
 const showDetaila = (phone) => {
-  //console.log(phone);
   document.getElementById("detail-container").textContent = "";
-  console.log(phone.mainFeatures.storage);
   const detailContainer = document.getElementById("detail-container");
   const div = document.createElement("div");
   div.setAttribute("id", "detail-card");
   let releaseDate = phone.releaseDate
     ? phone.releaseDate
     : "release date is not found";
-  console.log(releaseDate);
+
   div.innerHTML = `
           <img class="h-64 w-64 mx-auto py-3" src=${phone.image} alt=""/>
          <div class='lg:flex justify-center items-center lg:h-36 sm:h-52'>
@@ -82,4 +85,4 @@ const toggleSpinner = (displayStyle) => {
   document.getElementById("loader").style.display = displayStyle;
 };
 
-loadAllPhones();
+//loadAllPhones();
