@@ -1,0 +1,9 @@
+*{padding: 0;
+margin: 0;
+box-sizing: border-box;
+}
+
+#bgColor{
+  background-color:rgb(241, 234, 234) ;
+  box-shadow:         3px 3px 5px 6px #ccc;
+}

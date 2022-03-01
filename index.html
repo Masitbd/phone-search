@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phone-hunter</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./css/style.css">
+  <script src="https://kit.fontawesome.com/f84d918adc.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+  <!-- search field -->
+  <header>
+    <div class="w-3/5 mb-6 mx-auto">
+      <h1 class="text-center mb-5 text-3xl text-green-600">Search your favorite Phone</h1>
+      <div class="flex justify-center">
+        <input
+          class="shadow appearance-none border rounded w-2/5 grid py-2 px-2  text-gray-700 leading-tight focus:outline-none focus:shadow-outline mx-0"
+          id="search-text" type="text" placeholder="Please enter phone name eg. iphone, oppo">
+        <button onclick="loadAllPhones()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 rounded w-1/5">
+          Search
+        </button>
+      </div>
+    </div>
+  </header>
+  <main>
+    <section>
+      <div class="w-3/4 grid grid-cols-3 gap-4 mx-auto" id="detail-container">
+
+      </div>
+    </section>
+    <section>
+      <div class="w-3/4 grid grid-cols-3 gap-4 mx-auto" id="phone-container">
+
+      </div>
+    </section>
+  </main>
+
+  <script src="./js/phone.js"></script>
+</body>
+
+</html>
